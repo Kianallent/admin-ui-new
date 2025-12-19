@@ -1,5 +1,5 @@
 import React from 'react'
-import LabeledInput from '../Elements/Labeledinput';
+import LabeledInput from '../Elements/LabeledInput';
 import CheckBox from '../Elements/CheckBox';
 import Button from '../Elements/Button';
 
@@ -50,7 +50,7 @@ function FormSignUp() {
             {/* teks start */}
             <div className="my-9 px-7 flex flex-col justify-center items-center text-xs text-gray-03">
                 <div className="border border-gray-05 w-full"></div>
-                <div class="px-2 bg-special-mainBg absolute"> or sign in with</div>
+                <div className="px-2 bg-special-mainBg absolute"> or sign in with</div>
             </div>
             {/* teks end */}
             {/* sign in with google start */}
