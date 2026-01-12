@@ -1,0 +1,3 @@
+- Fix MainLayout.jsx: Import logoutService from authService, change input props to use className instead of backgroundColor and border.
+- Fix CardGoal.jsx: Change data.present_amount to data.presentAmount to match data.jsx.
+- Remove console.log(goals) from dashboard.jsx.
