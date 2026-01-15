@@ -1,10 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import LabeledInput from '../Elements/LabeledInput';
-import CheckBox from '../Elements/CheckBox';
 import Button from '../Elements/Button';
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
-function FormSignUp() {
+const SignUpSchema = Yup.object().shape({
+    name: Yup.string().required("Nama wajib diisi"),
+    email: Yup.string().email("Email tidak valid").required("Email wajib diisi"),
+    password: Yup.string().required("Password wajib diisi"),
+});
+
+function FormSignUp({ onSubmit }) {
     return (
         <>
             {/* header */}
@@ -13,39 +20,86 @@ function FormSignUp() {
             </div>
             {/* form start */}
             <div className="mt-16">
-                <form action="">
-                    <div className="mb-6">
-                        <LabeledInput
-                            label="Name"
-                            id="name"
-                            type="name"
-                            placeholder="Masukan Nama Lengkap"
-                            name="name"
-                        />
-                    </div>
-                    <div className="mb-6">
-                        <LabeledInput
-                            label="Email Address"
-                            id="email"
-                            type="email"
-                            placeholder="hello@example.com"
-                            name="email"
-                        />
-                    </div>
-                    <div className="mb-6">
-                        <LabeledInput
-                            label="Password"
-                            id="password"
-                            type="password"
-                            placeholder="............."
-                            name="password"
-                        />
-                    </div>
-                    <div className="mb-3 text-sm text-gray-03">
-                        By continuing, you agree to our <a href="#" className="text-primary font-semibold">terms of service</a>.
-                    </div>
-                    <Button>Sign Up</Button>
-                </form>
+                <Formik
+                    initialValues={{
+                        name: "",
+                        email: "",
+                        password: "",
+                    }}
+                    validationSchema={SignUpSchema}
+                    onSubmit={async (values, { setSubmitting }) => {
+                        try {
+                            await onSubmit(values);
+                        } finally {
+                            setSubmitting(false);
+                        }
+                    }}
+                >
+                    {({ isSubmitting }) => (
+                        <Form>
+                            <div className="mb-6">
+                                <Field name="name">
+                                    {({ field }) => (
+                                        <LabeledInput
+                                            {...field}
+                                            label="Name"
+                                            id="name"
+                                            type="text"
+                                            placeholder="Masukan Nama Lengkap"
+                                        />
+                                    )}
+                                </Field>
+                                <ErrorMessage
+                                    name="name"
+                                    component="p"
+                                    className="text-red-500 text-xs mt-1"
+                                />
+                            </div>
+                            <div className="mb-6">
+                                <Field name="email">
+                                    {({ field }) => (
+                                        <LabeledInput
+                                            {...field}
+                                            label="Email Address"
+                                            id="email"
+                                            type="email"
+                                            placeholder="hello@example.com"
+                                        />
+                                    )}
+                                </Field>
+                                <ErrorMessage
+                                    name="email"
+                                    component="p"
+                                    className="text-red-500 text-xs mt-1"
+                                />
+                            </div>
+                            <div className="mb-6">
+                                <Field name="password">
+                                    {({ field }) => (
+                                        <LabeledInput
+                                            {...field}
+                                            label="Password"
+                                            id="password"
+                                            type="password"
+                                            placeholder="............."
+                                        />
+                                    )}
+                                </Field>
+                                <ErrorMessage
+                                    name="password"
+                                    component="p"
+                                    className="text-red-500 text-xs mt-1"
+                                />
+                            </div>
+                            <div className="mb-3 text-sm text-gray-03">
+                                By continuing, you agree to our <a href="#" className="text-primary font-semibold">terms of service</a>.
+                            </div>
+                            <Button type="submit">
+                                {isSubmitting ? "Loading..." : "Sign Up"}
+                            </Button>
+                        </Form>
+                    )}
+                </Formik>
             </div>
             {/* form end */}
             {/* teks start */}

@@ -30,6 +30,17 @@ export const AuthContextProvider = ({ children }) => {
       console.error("Invalid token");
     }
   };
+
+  const register = (token) => {
+    try {
+      const decoded = jwtDecode(token);
+
+      setUser(decoded);
+      localStorage.setItem("token", token);
+    } catch (err) {
+      console.error("Invalid token");
+    }
+  };
   
   const logout = () => {
     setUser(null);
@@ -37,7 +48,7 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, register, logout }}>
       {children}
     </AuthContext.Provider>
   );
