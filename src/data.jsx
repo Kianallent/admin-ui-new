@@ -84,6 +84,69 @@ export const expensesBreakdowns = [
     },
 ];
 
+export const expenses = [
+    {
+        id: 1,
+        category: "Housing",
+        amount: 250,
+        percentage: 15,
+        items: [
+            { name: "House Rent", amount: 230, date: "17 May 2023" },
+            { name: "Parking", amount: 20, date: "17 May 2023" },
+        ],
+    },
+    {
+        id: 2,
+        category: "Food",
+        amount: 350,
+        percentage: 8,
+        items: [
+            { name: "Grocery", amount: 230, date: "17 May 2023" },
+            { name: "Restaurant Bill", amount: 120, date: "17 May 2023" },
+        ],
+    },
+    {
+        id: 3,
+        category: "Transportation",
+        amount: 50,
+        percentage: 12,
+        items: [
+            { name: "Taxi Fare", amount: 30, date: "17 May 2023" },
+            { name: "Metro Card Bill", amount: 20, date: "17 May 2023" },
+        ],
+    },
+    {
+        id: 4,
+        category: "Entertainment",
+        amount: 80,
+        percentage: 15,
+        items: [
+            { name: "Movie Ticket", amount: 30, date: "17 May 2023" },
+            { name: "iTunes", amount: 50, date: "17 May 2023" },
+        ],
+    },
+    {
+        id: 5,
+        category: "Shopping",
+        amount: 420,
+        percentage: 25,
+        items: [
+            { name: "Shirt", amount: 230, date: "17 May 2023" },
+            { name: "Jeans", amount: 190, date: "17 May 2023" },
+        ],
+    },
+    {
+        id: 6,
+        category: "Others",
+        amount: 50,
+        percentage: 23,
+        items: [
+            { name: "Donation", amount: 30, date: "17 May 2023" },
+            { name: "Gift", amount: 20, date: "17 May 2023" },
+        ],
+    },
+];
+
 export const expensesStatistics = {
     dataKey: "date",
     series: [

@@ -29,7 +29,8 @@ export const expensesService = async () => {
         Authorization: `Bearer ${token}`,
       }, 
     });
-    return response.data.data[0];
+    // Mengembalikan seluruh array data agar bisa ditampilkan dalam bentuk grid
+    return response.data.data;
   } catch (error) {
     throw {
       status: error.response?.status,
